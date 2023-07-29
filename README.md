@@ -23,6 +23,18 @@ dependencies: [
 
 ```swift
 
+// import helper
 import KeychainHelper
+
+// example data
+struct UserInfo: Codable {
+    let userId: UUID
+}
+
+// create object
+try KeychainHelper(keychainKey: "someKey", synchronizable: true).createSyncInfo(for: UserInfo(userId: UUID()))
+
+// fetch object
+let user: UserInfo? = try KeychainHelper(keychainKey: "someKey", synchronizable: true).fetchSyncInfo()
 
 ```
